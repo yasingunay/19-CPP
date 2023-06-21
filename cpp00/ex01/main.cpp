@@ -6,15 +6,15 @@
 /*   By: ygunay <ygunay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 06:14:46 by yasingunay        #+#    #+#             */
-/*   Updated: 2023/06/21 17:27:05 by ygunay           ###   ########.fr       */
+/*   Updated: 2023/06/21 17:29:43 by ygunay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
-#include <iostream>
-#include <string>
-#include <ctype.h>
-using namespace std;
+#include "PhoneBook.hpp" 
+#include <iostream> // cout, cin
+#include <string> 
+#include <ctype.h> // isdigit
+using namespace std; // std::string, std::cout, std::cin
 
 
 int main()
@@ -29,8 +29,8 @@ int main()
 			phonebook.add();
 		else if(command == "SEARCH")
 			phonebook.search();
-	 	else if (command != "EXIT")
+	 	else if (command != "EXIT") 
             cout << "Invalid command!" << endl;
-	}while(command != "EXIT");
+	}while(command != "EXIT"); 
 	return 0;
 }
