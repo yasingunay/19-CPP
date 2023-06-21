@@ -6,12 +6,13 @@
 /*   By: yasingunay <yasingunay@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 06:14:46 by yasingunay        #+#    #+#             */
-/*   Updated: 2023/06/21 13:15:03 by yasingunay       ###   ########.fr       */
+/*   Updated: 2023/06/21 14:38:00 by yasingunay       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
+#include <ctype.h>
 using namespace std;
 
 class Contact{
@@ -84,7 +85,8 @@ public:
 		string str;
 		
 		getline(cin, str);
-		while(str.empty())
+		while(str.empty() || str[0] == '\t' || str[0] == '\n' || str[0] == '\v' ||
+			str[0] == '\f' || str[0] == ' ' || str[0] == '\r')
 		{
 			cout << "Please enter a valid input" << endl;
 			getline(cin, str);
@@ -94,18 +96,19 @@ public:
 	
 	void add(){
 		cout << "First Name: ";
-		_contacts[_index].set_first_name(_read_info());
+		_contacts[this->_index].set_first_name(_read_info());
 		cout << "Last Name: ";
-		_contacts[_index].set_last_name(_read_info());
+		_contacts[this->_index].set_last_name(_read_info());
 		cout << "Nickname: ";
-		_contacts[_index].set_nickname(_read_info());
+		_contacts[this->_index].set_nickname(_read_info());
 		cout << "Number: ";
-		_contacts[_index].set_number(_read_info());
+		_contacts[this->_index].set_number(_read_info());
 		cout << "Secret: ";
-		_contacts[_index].set_secret(_read_info());
+		_contacts[this->_index].set_secret(_read_info());
 		cout << "Contact added successfully" << endl;
-		this->_index++;
-		this->_nb_contacts++;
+		this->_index = (this->_index + 1) % 2;
+		if(this->_nb_contacts < 2)
+			this->_nb_contacts++;
 		cout << "Index: " << this->_index << endl;
 		cout << "Nb contacts: " << this->_nb_contacts << endl;
 	}
@@ -128,31 +131,33 @@ public:
 
 	int _read_index(){
 		int index = 0;
-		do
+		string str;
+
+		while(!cin.eof())
 		{
 			cout << "Select an index: ";
-			string str;
 			getline(cin, str);
-			index = stoi(str);
-			cout << "Index: " << index << endl;
-        }
-		while(index < 1 || index > this->_nb_contacts);
-		
-		
-		return index;
+			if(str.empty() || str[0] == '\t' || str[0] == '\n' || str[0] == '\v' || str[0] == '\f' || str[0] == ' ' || str[0] == '\r' || !isdigit(str[0]) || str[0] == '0' || stoi(str) > this->_nb_contacts)
+				cout << "Please enter a valid index" << endl;
+			else if
+			else if (isdigit(str[0]))
+				index = stoi(str);
+		}
+		return index;;
 	}
+	
 
 
 	void search(){
-		if(_nb_contacts == 0)
+		if(this->_nb_contacts == 0)
 		{
-			cout << "There is no contact to search" << endl;
+			cout << "Phonebook is empty" << endl;
 			return;
 		}
 		cout << " ------------------------------------------ " << std::endl;
 		cout << "|    Index|First name| Last name|  Nickname|" << std::endl;
 		cout << "|---------|----------|----------|--------- |" << std::endl;
-		for(int i = 0; i < _nb_contacts; i++)
+		for(int i = 0; i < this->_nb_contacts; i++)
 		{
 			cout << '|' << "        " << i + 1 << '|';
 			_print_str(this->_contacts[i].get_first_name());
