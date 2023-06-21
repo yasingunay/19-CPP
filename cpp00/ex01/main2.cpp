@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   main2.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yasingunay <yasingunay@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 06:14:46 by yasingunay        #+#    #+#             */
-/*   Updated: 2023/06/21 08:22:19 by yasingunay       ###   ########.fr       */
+/*   Updated: 2023/06/21 12:54:41 by yasingunay       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <string>
 using namespace std;
 
 class Contact{
@@ -60,10 +61,13 @@ class Phonebook{
 private:
 	Contact _contacts[8];
 	int _index;
+	int _nb_contacts;
 
 public:
 	Phonebook(){
-		_index = 0;
+		this->_index = 0;
+		this->_nb_contacts = 0;
+		cout << "Phonebook created" << endl;
 	}
 	string _read_info(){
 		string str;
@@ -89,28 +93,67 @@ public:
 		cout << "Secret: ";
 		_contacts[_index].set_secret(_read_info());
 		cout << "Contact added successfully" << endl;
-		_index++;
+		this->_index++;
+		this->_nb_contacts++;
+		cout << "Index: " << this->_index << endl;
+		cout << "Nb contacts: " << this->_nb_contacts << endl;
+	}
+
+	void _print_str(string str){
+		if(str.length() > 10)
+			cout << str.substr(0, 9) << '.';
+		else
+			cout << string(10 - str.length(), ' ') << str;
 	}
 	
 
-	void search(){
-		cout << "-------------------------------------------" << std::endl;
-		cout << "|  Index  |First name| Last name| Nickname|" << std::endl;
-		cout << "-------------------------------------------" << std::endl;
-		
-		
+	void _print_contact(int index){
+		cout << "First Name: " << this->_contacts[index].get_first_name() << endl;
+		cout << "Last Name: " << this->_contacts[index].get_last_name() << endl;
+		cout << "Nickname: " << this->_contacts[index].get_nickname() << endl;
+		cout << "Number: " << this->_contacts[index].get_number() << endl;
+		cout << "Secret: " << this->_contacts[index].get_secret() << endl;
+	}
 
-		
+	int _read_index(){
 		int index = 0;
-		cout << "Select an index: ";
-		string str;
-		getline(cin, str);
-		index = stoi(str);
-		cout << "First Name: " << _contacts[index].get_first_name() << endl;
-		cout << "Last Name: " << _contacts[index].get_last_name() << endl;
-		cout << "Nickname: " << _contacts[index].get_nickname() << endl;
-		cout << "Number: " << _contacts[index].get_number() << endl;
-		cout << "Secret: " << _contacts[index].get_secret() << endl;
+		do
+		{
+			cout << "Select an index: ";
+			string str;
+			getline(cin, str);
+			index = stoi(str);
+			cout << "Index: " << index << endl;
+        }
+		while(index < 1 || index > this->_nb_contacts);
+		
+		
+		return index;
+	}
+
+
+	void search(){
+		if(_nb_contacts == 0)
+		{
+			cout << "There is no contact to search" << endl;
+			return;
+		}
+		cout << " ------------------------------------------ " << std::endl;
+		cout << "|    Index|First name| Last name|  Nickname|" << std::endl;
+		cout << "|---------|----------|----------|--------- |" << std::endl;
+		for(int i = 0; i < _nb_contacts; i++)
+		{
+			cout << '|' << "        " << i + 1 << '|';
+			_print_str(this->_contacts[i].get_first_name());
+			cout << '|';
+			_print_str(this->_contacts[i].get_last_name());
+			cout << '|';
+			_print_str(this->_contacts[i].get_nickname());
+			cout << '|' << endl;
+		}
+		cout << " ----------------------------------------- " << std::endl;
+		
+		_print_contact(_read_index() - 1);
 		
 	}
 	
@@ -129,8 +172,5 @@ int main()
 		else if(command == "SEARCH")
 			phonebook.search();
 	}while(command != "EXIT");
-	
-	
-
 	return 0;
 }
