@@ -6,32 +6,28 @@
 /*   By: yasingunay <yasingunay@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 15:58:47 by yasingunay        #+#    #+#             */
-/*   Updated: 2023/06/21 16:32:00 by yasingunay       ###   ########.fr       */
+/*   Updated: 2023/06/21 17:07:11 by yasingunay       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
 #include "PhoneBook.hpp"
+using namespace std;
 
-class PhoneBook{
-private:
-	Contact _contacts[8];
-	int _index;
-	int _nb_contacts;
-
-public:
-	PhoneBook(){
+	PhoneBook::PhoneBook()
+	{
 		this->_index = 0;
 		this->_nb_contacts = 0;
 		cout << "Phonebook created" << endl;
 	}
 
-	~PhoneBook(){
-		cout << "Phonebook destroyed" << endl;
+	PhoneBook::~PhoneBook()
+	{
+		cout << "Phonebook destroyed" << endl; 
 	}
 	
-	string _read_info(){
+	string PhoneBook::_read_info(){
 		string str;
 		
 		getline(cin, str);
@@ -44,7 +40,7 @@ public:
 		return str;
 	}
 	
-	void add(){
+	void PhoneBook:: add(){
 		cout << "First Name: ";
 		_contacts[this->_index].set_first_name(_read_info());
 		cout << "Last Name: ";
@@ -59,11 +55,11 @@ public:
 		this->_index = (this->_index + 1) % 8;
 		if(this->_nb_contacts < 8)
 			this->_nb_contacts++;
-		cout << "Index: " << this->_index << endl;
-		cout << "Nb contacts: " << this->_nb_contacts << endl;
+		//cout << "Index: " << this->_index << endl; //debug
+		//cout << "Nb contacts: " << this->_nb_contacts << endl; //debug
 	}
 
-	void _print_str(string str){
+	void PhoneBook::_print_str(string str){
 		if(str.length() > 10)
 			cout << str.substr(0, 9) << '.';
 		else
@@ -71,7 +67,7 @@ public:
 	}
 	
 
-	void _print_contact(int index){
+	void PhoneBook::_print_contact(int index){
 		cout << "First Name: " << this->_contacts[index].get_first_name() << endl;
 		cout << "Last Name: " << this->_contacts[index].get_last_name() << endl;
 		cout << "Nickname: " << this->_contacts[index].get_nickname() << endl;
@@ -79,7 +75,7 @@ public:
 		cout << "Secret: " << this->_contacts[index].get_secret() << endl;
 	}
 
-	int _read_index(){
+	int PhoneBook::_read_index(){
 		int index = 0;
 		string str;
 
@@ -99,7 +95,7 @@ public:
 	
 
 
-	void search(){
+	void PhoneBook::search(){
 		if(this->_nb_contacts == 0)
 		{
 			cout << "Phonebook is empty" << endl;
@@ -124,4 +120,3 @@ public:
 		
 	}
 	
-};
