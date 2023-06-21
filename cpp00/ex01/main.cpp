@@ -6,7 +6,7 @@
 /*   By: yasingunay <yasingunay@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 06:14:46 by yasingunay        #+#    #+#             */
-/*   Updated: 2023/06/21 14:38:00 by yasingunay       ###   ########.fr       */
+/*   Updated: 2023/06/21 15:49:34 by yasingunay       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,8 @@ public:
 		cout << "Secret: ";
 		_contacts[this->_index].set_secret(_read_info());
 		cout << "Contact added successfully" << endl;
-		this->_index = (this->_index + 1) % 2;
-		if(this->_nb_contacts < 2)
+		this->_index = (this->_index + 1) % 8;
+		if(this->_nb_contacts < 8)
 			this->_nb_contacts++;
 		cout << "Index: " << this->_index << endl;
 		cout << "Nb contacts: " << this->_nb_contacts << endl;
@@ -139,9 +139,10 @@ public:
 			getline(cin, str);
 			if(str.empty() || str[0] == '\t' || str[0] == '\n' || str[0] == '\v' || str[0] == '\f' || str[0] == ' ' || str[0] == '\r' || !isdigit(str[0]) || str[0] == '0' || stoi(str) > this->_nb_contacts)
 				cout << "Please enter a valid index" << endl;
-			else if
 			else if (isdigit(str[0]))
 				index = stoi(str);
+			if(index > 0 && index <= this->_nb_contacts)
+				break;
 		}
 		return index;;
 	}
@@ -187,6 +188,8 @@ int main()
 			phonebook.add();
 		else if(command == "SEARCH")
 			phonebook.search();
+		else
+			cout << "Command is not valid!" << endl;
 	}while(command != "EXIT");
 	return 0;
 }
