@@ -6,14 +6,14 @@
 /*   By: ygunay <ygunay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:35:46 by ygunay            #+#    #+#             */
-/*   Updated: 2023/06/22 15:29:19 by ygunay           ###   ########.fr       */
+/*   Updated: 2023/06/22 15:31:41 by ygunay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Account.hpp"
 #include <iostream>
-#include <iomanip>
-#include <ctime>
+#include <iomanip> // std::put_time
+#include <ctime>  // std::time_t, std::time, std::localtime
 
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
