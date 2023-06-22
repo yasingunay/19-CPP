@@ -6,7 +6,7 @@
 /*   By: ygunay <ygunay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 06:14:46 by yasingunay        #+#    #+#             */
-/*   Updated: 2023/06/22 11:36:40 by ygunay           ###   ########.fr       */
+/*   Updated: 2023/06/22 16:28:12 by ygunay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ int main()
 	{
 		std::cout << "Please enter your command: (ADD, SEARCH, EXIT)" << std::endl;
 		std::getline(std::cin, command);
+		if (std::cin.fail())
+   		{
+       	 	// Input operation failed, break out of the loop
+        	break;
+   		 }
 		if(command == "ADD")
 			phonebook.add();
 		else if(command == "SEARCH")
