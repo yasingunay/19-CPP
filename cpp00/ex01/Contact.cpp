@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yasingunay <yasingunay@student.42.fr>      +#+  +:+       +#+        */
+/*   By: ygunay <ygunay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 16:19:32 by yasingunay        #+#    #+#             */
-/*   Updated: 2023/06/21 17:07:46 by yasingunay       ###   ########.fr       */
+/*   Updated: 2023/06/22 11:38:08 by ygunay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
-using namespace std;
+//using namespace std;
 #include <iostream>
 #include <string>
 
@@ -22,34 +22,34 @@ using namespace std;
 		Contact::~Contact(){
 			//cout << "Contact destroyed" << endl; //debug
 		}
-		void  Contact::set_first_name(string first_name){
+		void  Contact::set_first_name(std::string first_name){
 			_first_name = first_name;
 		}
-		string  Contact::get_first_name(){
+		std::string  Contact::get_first_name(){
 			return _first_name;
 		}
-		void Contact::set_last_name(string last_name){
+		void Contact::set_last_name(std::string last_name){
 			_last_name = last_name;
 		}
-		string Contact::get_last_name(){
+		std::string Contact::get_last_name(){
 			return _last_name;
 		}
-		void Contact::set_nickname(string nickname){
+		void Contact::set_nickname(std::string nickname){
 			_nickname = nickname;
 		}
-		string Contact::get_nickname(){
+		std::string Contact::get_nickname(){
 			return _nickname;
 		}
-		void Contact::set_number(string number){
+		void Contact::set_number(std::string number){
 			_number = number;
 		}
-		string Contact::get_number(){
+		std::string Contact::get_number(){
 			return _number;
 		}
-		void Contact::set_secret(string secret){
+		void Contact::set_secret(std::string secret){
 			_secret = secret;
 		}
-		string Contact::get_secret(){
+		std::string Contact::get_secret(){
 			return _secret;
 		}
 

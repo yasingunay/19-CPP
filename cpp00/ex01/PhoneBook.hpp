@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yasingunay <yasingunay@student.42.fr>      +#+  +:+       +#+        */
+/*   By: ygunay <ygunay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 15:56:44 by yasingunay        #+#    #+#             */
-/*   Updated: 2023/06/21 16:57:22 by yasingunay       ###   ########.fr       */
+/*   Updated: 2023/06/22 11:52:41 by ygunay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,5 @@ class PhoneBook
 		void search();
 	
 };
-
-
-
 
 #endif
