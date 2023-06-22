@@ -6,7 +6,7 @@
 /*   By: ygunay <ygunay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:35:46 by ygunay            #+#    #+#             */
-/*   Updated: 2023/06/22 15:11:05 by ygunay           ###   ########.fr       */
+/*   Updated: 2023/06/22 15:29:19 by ygunay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,17 +128,10 @@ void Account::displayStatus() const
               << std::endl;
 }
 
-void Account::_displayTimestamp()
+void	Account::_displayTimestamp(void)
 {
-    // Get the current time using the system clock
-    std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
+	time_t	now;
 
-    // Convert the time point to a time_t object
-    std::time_t currentTime = std::chrono::system_clock::to_time_t(now);
-
-    // Convert the time_t to a struct tm object representing local time
-    std::tm* localTime = std::localtime(&currentTime);
-
-    // Format and display the timestamp using put_time
-    std::cout << "[" << std::put_time(localTime, "%Y%m%d_%H%M%S") << "] ";
+	now = time(NULL);
+	std::cout << std::put_time(localtime(&now), "[%Y%m%d_%H%M%S] ");
 }
